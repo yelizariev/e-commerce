@@ -17,7 +17,9 @@
         "web_tour",
     ],
     "data": [
-        "views/assets.xml",
         "views/website_sale.xml",
+    ],
+    'demo': [
+        "views/assets.xml",
     ],
 }
