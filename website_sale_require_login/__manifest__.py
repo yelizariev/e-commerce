@@ -20,6 +20,6 @@
         "views/website_sale.xml",
     ],
     'demo': [
-        "views/assets.xml",
+        "demo/demo_assets_frontend.xml",
     ],
 }
