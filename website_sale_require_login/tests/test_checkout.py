@@ -6,26 +6,26 @@ import odoo.tests
 @odoo.tests.common.at_install(False)
 @odoo.tests.common.post_install(True)
 class TestUi(odoo.tests.HttpCase):
-    # keep test numbering from module website_sale. Test 01 is not needed in this module
-    def test_02_admin_checkout(self):
+    def run_tour(self, login=None):
         self.phantom_js(
             "/",
-            "odoo.__DEBUG__.services['web_tour.tour'].run('shop_buy_product')",
-            "odoo.__DEBUG__.services['web_tour.tour'].tours.shop_buy_product.ready",
-            login="admin"
+
+            "odoo.__DEBUG__.services['web_tour.tour']"
+            ".run('shop_buy_product')",
+
+            "odoo.__DEBUG__.services['web_tour.tour']"
+            ".tours.shop_buy_product.ready",
+
+            login=login
         )
+
+    # keep test numbering from module website_sale.
+    # Test 01 is not needed in this module
+    def test_02_admin_checkout(self):
+        self.run_tour("admin")
 
     def test_03_demo_checkout(self):
-        self.phantom_js(
-            "/",
-            "odoo.__DEBUG__.services['web_tour.tour'].run('shop_buy_product')",
-            "odoo.__DEBUG__.services['web_tour.tour'].tours.shop_buy_product.ready",
-            login="demo"
-        )
+        self.run_tour("demo")
 
     def test_03_public_checkout(self):
-        self.phantom_js(
-            "/",
-            "odoo.__DEBUG__.services['web_tour.tour'].run('shop_buy_product')",
-            "odoo.__DEBUG__.services['web_tour.tour'].tours.shop_buy_product.ready"
-        )
+        self.run_tour()
