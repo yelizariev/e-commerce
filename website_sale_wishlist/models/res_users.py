@@ -4,6 +4,7 @@
 from odoo import api, fields, models
 from odoo.http import request
 
+
 class ResUsers(models.Model):
     _inherit = "res.users"
 
