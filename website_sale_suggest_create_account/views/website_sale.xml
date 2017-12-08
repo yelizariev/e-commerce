@@ -4,14 +4,17 @@
     <template id="cart" inherit_id="website_sale.cart">
         <!-- Show normal "Checkout" button if user is logged in or external login
              is disabled -->
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="suggest_create_account" t-value="user_id != website.user_id or
+            env['ir.config_parameter'].get_param(
+            'auth_signup.allow_uninvited') != 'True' and
+            not optional_products and website_sale_order and
+            website_sale_order.website_order_line
+            " />
+        </xpath>
+
         <xpath expr="//a[@href='/shop/checkout']" position="attributes">
-            <attribute name="t-if">(
-                user_id != website.user_id or
-                env['ir.config_parameter'].get_param(
-                    'auth_signup.allow_uninvited') != 'True' and
-                not optional_products and website_sale_order and
-                website_sale_order.website_order_line
-            )</attribute>
+            <attribute name="t-if">suggest_create_account</attribute>
         </xpath>
     
         <!-- Show choice in other cases -->
