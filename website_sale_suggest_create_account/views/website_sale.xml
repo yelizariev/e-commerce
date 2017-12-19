@@ -5,7 +5,7 @@
         <xpath expr="//div[@id='wrap']" position="before">
             <t t-set="user_authenticated" t-value="user_id != website.user_id"/>
             <t t-set="signup_allowed" t-value="env['ir.config_parameter'].get_param('auth_signup.allow_uninvited') == 'True' "/>
-            <!-- note: optional_products has to be removed since odoo 12.0 at least. See https://github.com/odoo/odoo/pull/21461 -->
+            <!-- TODO: optional_products has to be removed since odoo 12.0 at least. See https://github.com/odoo/odoo/pull/21461 -->
             <t t-set="can_checkout" t-value="not optional_products 
                                              and website_sale_order and
                                              website_sale_order.website_order_line"/>
